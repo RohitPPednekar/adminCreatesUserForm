@@ -1,3 +1,30 @@
-<p>
-  admin works!
-</p>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="name">Name</label>
+      <input class="form-control" id="name" type="text" placeholder="Name" name="name" /><span class="invalid-feedback" id="errorName">Please Enter Name!</span>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="number">Phone number</label>
+      <input class="form-control" id="number" type="text" placeholder="Phone number" name="phoneNumber" /><span class="invalid-feedback" id="errorNumber">Please Enter Phone number!</span><span class="invalid-feedback" id="errorValidNumber">Please Enter Valid number!</span>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="jobTitle">Job Title</label>
+      <input class="form-control" id="jobTitle" type="text" placeholder="Job Title" name="jobTitle" /><span class="invalid-feedback" id="errorJobTitle">Please Enter Job Title!</span>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="emailId">Email Id</label>
+      <input class="form-control" id="emailId" type="email" placeholder="name@example.com" name="Email" /><span class="invalid-feedback" id="errorEmail"></span>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-8 mb-3">
+      <div class="custom-file">
+        <label class="custom-file-label" for="resume">Resume Upload...</label>
+        <input class="custom-file-input" id="resume" type="file" name="resume" /><span class="invalid-feedback" id="errorResume"></span>
+      </div>
+    </div>
+  </div>
+  <div class="form-group"></div>
+  <input class="btn btn-primary" type="button" onclick="submitForm();" value="Submit form" />

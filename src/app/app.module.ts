@@ -2,17 +2,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { AdminModule } from './admin/admin.module';
-import { UserFormModule } from './user-form/user-form.module';
+import { AdminComponent } from './admin/admin.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
-    AdminModule,
-    UserFormModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
