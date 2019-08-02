@@ -1,30 +1,60 @@
-  <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label for="name">Name</label>
-      <input class="form-control" id="name" type="text" placeholder="Name" name="name" /><span class="invalid-feedback" id="errorName">Please Enter Name!</span>
+<!-- The Modal -->
+<div id="myModal" class="modal" *ngIf="display">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close" (click)="display=false;">&times;</span>
+      <h2>Input properties updater</h2>
     </div>
-    <div class="col-md-4 mb-3">
-      <label for="number">Phone number</label>
-      <input class="form-control" id="number" type="text" placeholder="Phone number" name="phoneNumber" /><span class="invalid-feedback" id="errorNumber">Please Enter Phone number!</span><span class="invalid-feedback" id="errorValidNumber">Please Enter Valid number!</span>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label for="jobTitle">Job Title</label>
-      <input class="form-control" id="jobTitle" type="text" placeholder="Job Title" name="jobTitle" /><span class="invalid-feedback" id="errorJobTitle">Please Enter Job Title!</span>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="emailId">Email Id</label>
-      <input class="form-control" id="emailId" type="email" placeholder="name@example.com" name="Email" /><span class="invalid-feedback" id="errorEmail"></span>
+    <div class="modal-body">
+      <form #f="ngForm" (ngSubmit)="onSubmit(currentDraggedItem.dragData.placeholder)">
+      Place holder: <input type="text" [(ngModel)]="currentDraggedItem.dragData.placeholder" name="placeholder" required/><br/><br/><br/>
+      <button type="submit" class="btn btn-success" [disabled]="!f.form.valid">Submit</button>
+      </form>
     </div>
   </div>
-  <div class="form-row">
-    <div class="col-md-8 mb-3">
-      <div class="custom-file">
-        <label class="custom-file-label" for="resume">Resume Upload...</label>
-        <input class="custom-file-input" id="resume" type="file" name="resume" /><span class="invalid-feedback" id="errorResume"></span>
-      </div>
-    </div>
-  </div>
-  <div class="form-group"></div>
-  <input class="btn btn-primary" type="button" onclick="submitForm();" value="Submit form" />
+
+</div>
+
+<p>Create User form here !.</p>
+<hr>
+
+<div class="row">
+
+	<div class="col-sm-3">
+		<div class="card card-outline-success mb-3">
+			<div class="card-header card-inverse card-success">
+				Input Items
+			</div>
+			<div class="card-block scroll-list">
+				<div #formData class="list-group">
+					<li class="list-group-item" [draggable] *ngFor="let item of formElements" 
+					 [dragData]="item" >
+						{{item.name}}
+					</li>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="col-sm-5">
+		<div class="card card-outline-primary mb-6" droppable (onDrop)="onAnyDrop($event)">
+			<div class="card-header card-inverse card-primary">Drop the input items on the form</div>
+			<div class="card-block scroll-list" id="formContent">
+				<div>
+					<div [class]="col-sm-5">
+						<li *ngFor="let item of droppedItems" class="list-group-item">
+							<input [type]="item.inputType" [placeholder]="item.placeholder">
+							<label *ngIf="item.inputType === 'checkbox'">{{ item.placeholder}}</label>
+						</li>						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-5"><button (ngSubmit)="renderUSerForm()" type="submit" class="btn btn-success" >Save</button></div>
+		</div>
+	</div>
+</div>
