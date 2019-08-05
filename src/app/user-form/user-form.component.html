@@ -7,7 +7,7 @@
     <div class="form-group row" *ngFor ="let elem of renderingForm">
         <div class="col-sm-6">
           <div class="form-group">
-            <input [type]="elem.type" [placeholder]="elem.placeholder"  class="form-control" [ngClass]="{ 'form-control': elem.type == 'checkbox','is-invalid': submitted && formControlls[elem.formControllName].errors }" [formControlName]="elem.formControllName">
+            <input [type]="elem.type" [placeholder]="elem.placeholder"  class="form-control" [ngClass]="{ 'is-invalid': submitted && formControlls[elem.formControllName].errors }" [formControlName]="elem.formControllName">
             <label *ngIf="elem.type == 'checkbox'">{{ elem.placeholder }}</label>
             <div *ngIf="submitted && formControlls[elem.formControllName].errors" class="invalid-feedback">
                 <div *ngIf="formControlls[elem.formControllName].errors.required">{{ elem.formControllName }} is required</div>
@@ -25,7 +25,7 @@
             <h4>Please create user form first on admin side !</h4>
         </div>
     </div>
-    <div class="col-sm-10" *ngIf="renderingForm=='' || renderingForm==null || renderingForm ==undefined">
+    <div class="col-sm-10" >
         <div class="form-group">
             <button class="btn btn-primary" [routerLink]="['/admin']">Back</button>
         </div>

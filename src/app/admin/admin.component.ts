@@ -23,7 +23,6 @@ export class AdminComponent {
     { name: 'checkbox', type: 'checkbox',  placeholder: null,fieldName:'',validationRequired : false },
     { name: 'file', type: 'file', placeholder: null,fieldName:'',validationRequired : false },
     { name: 'date', type: 'date', placeholder: null,fieldName:'',validationRequired : false },
-    { name: 'select', type: 'select', placeholder: null,fieldName:'',validationRequired : false }
   ];
 
   constructor(private data: formElements,private router: Router) {  
@@ -73,7 +72,11 @@ export class AdminComponent {
 
   renderUSerForm(): void {
     this.data.FormElements = this.droppedItems;
-    this.router.navigate(['/userform']);
+    if(this.droppedItems.length >0){
+      alert("Form created ! Go on top right link to view user form !");
+    }else{
+      alert("Form needs to create first before saving !");
+    }
   }
   
   updateDroppedItem(updatedFields: any): void {

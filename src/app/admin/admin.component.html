@@ -1,6 +1,13 @@
 <!-- The Modal -->
 <div class="card-header">
-	<h3>Admin form creation</h3>
+	<div class="row">
+		<div class="col-9">
+			<h3>Admin form creation</h3>
+		</div>
+		<div class="col-3">
+			<a [routerLink]="['/userform']"><h6>Admin form creation</h6></a>
+		</div>
+	</div>
 </div>
 <div id="myModal" class="modal" *ngIf="display">
 
@@ -12,7 +19,9 @@
     </div>
     <div class="modal-body">
       <form #f="ngForm" >
-	  Enter Placeholder: <input type="text" (ngModel)="currentDraggedItem.dragData.placeholder" name="placeholder" placeholder="Enter field's placeholder" required/><br/><br/><br/>
+		<div *ngIf="!(currentDraggedItem.dragData.type =='date' || currentDraggedItem.dragData.type =='file')">
+			<span>Enter Placeholder :</span> <input type="text" (ngModel)="currentDraggedItem.dragData.placeholder" name="placeholder" placeholder="Enter field's placeholder" required/><br/><br/><br/>
+	  </div>
 	  Field Name   : <input type="text" (ngModel)="currentDraggedItem.dragData.fieldName" name="fieldName" placeholder="Eg. firstname,email,password,etc" required/><br/>
 	  <span style="color:red;" *ngIf="spaceValidator">No Spaces required</span>
 	  <span style="color:red;" *ngIf="existingValidator">Name already present, Try another name !</span><br/><br/><br/>
@@ -24,7 +33,7 @@
 
 </div>
 
-<p>Create User form here !.</p>
+<p>Create User's form from here ..!</p>
 <hr>
 
 <div class="row">
@@ -32,7 +41,7 @@
 	<div class="col-sm-3">
 		<div class="card card-outline-success mb-3">
 			<div class="card-header card-inverse card-success">
-				Input Items
+				<h6>Drag Input Items</h6>
 			</div>
 			<div class="card-block scroll-list">
 				<div #formData class="list-group">
@@ -48,7 +57,7 @@
 
 	<div class="col-sm-5">
 		<div class="card card-outline-primary mb-6" droppable (onDrop)="onAnyDrop($event)">
-			<div class="card-header card-inverse card-primary">Drop the input items on the form</div>
+			<div class="card-header card-inverse card-primary">Drop form input's items here !</div>
 			<div class="card-block scroll-list" id="formContent">
 				<div>
 					<div [class]="col-sm-5">
@@ -60,6 +69,7 @@
 				</div>
 			</div>
 		</div>
+		<br>
 		<div class="row">
 			<div class="col-sm-5"><button (click)="renderUSerForm()" type="submit" class="btn btn-success" >Save</button></div>
 		</div>

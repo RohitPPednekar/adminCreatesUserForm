@@ -44,7 +44,7 @@ export class UserFormComponent implements OnInit {
         return;
     }
 
-    alert('SUCCESS!! :-)')
+    alert('Registered form  !! :-)')
 }
 
 
