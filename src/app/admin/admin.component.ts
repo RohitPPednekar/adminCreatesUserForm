@@ -14,13 +14,13 @@ export class AdminComponent {
   display: boolean = false;
   formElement :formElements[];
   spaceValidator = false;
-
+  existingValidator = false;
   droppedItems = [];
   currentDraggedItem: any;
   formElements = [
-    { name: 'text', type: 'input-text',fieldName:'',validationRequired : false },
-    { name: 'password', type: 'input-password',fieldName:'',validationRequired : false },
-    { name: 'checkbox', type: 'input-check',  placeholder: null,fieldName:'',validationRequired : false },
+    { name: 'text', type: 'text',fieldName:'',validationRequired : false },
+    { name: 'password', type: 'password',fieldName:'',validationRequired : false },
+    { name: 'checkbox', type: 'checkbox',  placeholder: null,fieldName:'',validationRequired : false },
     { name: 'file', type: 'file', placeholder: null,fieldName:'',validationRequired : false },
     { name: 'date', type: 'date', placeholder: null,fieldName:'',validationRequired : false },
     { name: 'select', type: 'select', placeholder: null,fieldName:'',validationRequired : false }
@@ -54,12 +54,18 @@ export class AdminComponent {
     var spaceValidationRule = /^\S{3,}$/;
     console.log(fieldsParams)
     
-    if(spaceValidationRule.test(fieldsParams.fieldName)){
+    if (this.droppedItems.find(x => x.fieldName === fieldsParams.fieldName)){
+      this.spaceValidator = false;
+      this.existingValidator = true;
+      this.display = true;
+    }else if(spaceValidationRule.test(fieldsParams.fieldName)){
       this.updateDroppedItem(fieldsParams);
       this.display = false;
       this.spaceValidator = false;
+      this.existingValidator = false;
     }else{
       this.spaceValidator = true;
+      this.existingValidator = false;
       this.display = true;
     }
     
@@ -73,11 +79,10 @@ export class AdminComponent {
   updateDroppedItem(updatedFields: any): void {
     
     var obj ={
-      name: '', type: '', inputType: '',fieldName:'',validationRequired : false ,placeholder :''
+      name: '', type: '',fieldName:'',validationRequired : false ,placeholder :''
     };
     obj.name = this.currentDraggedItem.dragData.name;
     obj.type = this.currentDraggedItem.dragData.type;
-    obj.inputType = this.currentDraggedItem.dragData.inputType;
     obj.fieldName = updatedFields.fieldName;
     obj.validationRequired = (updatedFields.Validation) ? updatedFields.Validation : false;
     obj.placeholder = updatedFields.placeholder;

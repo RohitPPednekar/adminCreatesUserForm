@@ -14,7 +14,8 @@
       <form #f="ngForm" >
 	  Enter Placeholder: <input type="text" (ngModel)="currentDraggedItem.dragData.placeholder" name="placeholder" placeholder="Enter field's placeholder" required/><br/><br/><br/>
 	  Field Name   : <input type="text" (ngModel)="currentDraggedItem.dragData.fieldName" name="fieldName" placeholder="Eg. firstname,email,password,etc" required/><br/>
-	  <span style="color:red;" *ngIf="spaceValidator">No Spaces required</span><br/><br/><br/>
+	  <span style="color:red;" *ngIf="spaceValidator">No Spaces required</span>
+	  <span style="color:red;" *ngIf="existingValidator">Name already present, Try another name !</span><br/><br/><br/>
 	  Tick if Validation Required: <input type="checkbox" (ngModel)="currentDraggedItem.dragData.validationRequired" name="Validation" /><br/><br/><br/>
       <button (click)="onSubmit(f.form.value)" type="submit" class="btn btn-success" [disabled]="!f.form.valid">Submit</button>
       </form>
@@ -52,8 +53,8 @@
 				<div>
 					<div [class]="col-sm-5">
 						<li *ngFor="let item of droppedItems" class="list-group-item">
-							<input [type]="item.inputType" [placeholder]="item.placeholder">
-							<label *ngIf="item.inputType === 'checkbox'">{{ item.placeholder}}</label>
+							<input [type]="item.type" [placeholder]="item.placeholder">
+							<label *ngIf="item.type === 'checkbox'">{{ item.placeholder}}</label>
 						</li>						
 					</div>
 				</div>

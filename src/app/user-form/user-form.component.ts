@@ -11,18 +11,41 @@ import { formElements } from '../formElements';
 export class UserFormComponent implements OnInit {
 
   constructor( private data: formElements) { }
+  submitted :boolean= false;
   forms :any[];
   renderingForm=[];
-  reactiveForm={};
   myForm: FormGroup; 
   ngOnInit() {
+    var reactiveForm={};
     this.forms = this.data.FormElements;
-    for(let elements of this.forms ){
-      this.reactiveForm[elements.type] = new FormControl('',[]);
-      this.renderingForm.push(elements.type);
-    }
+    if(this.forms && this.forms.length > 0){
+      for(let elements of this.forms ){
+        if(elements.validationRequired){
+          reactiveForm[elements.fieldName] = new FormControl('',[Validators.required]);
+        }else{
+          reactiveForm[elements.fieldName] = new FormControl('',[]);
+        }
+        
+        this.renderingForm.push({type:elements.type,formControllName : elements.fieldName, placeholder : elements.placeholder});
+      }
+    }  
     console.log("forms---->"+this.forms);
-    this.myForm = new FormGroup(this.reactiveForm);
+    this.myForm = new FormGroup(reactiveForm);
   }
+  get formControlls() { 
+    return this.myForm.controls; 
+  }
+
+  onSubmit() {
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.myForm.invalid) {
+        return;
+    }
+
+    alert('SUCCESS!! :-)')
+}
+
 
 }
