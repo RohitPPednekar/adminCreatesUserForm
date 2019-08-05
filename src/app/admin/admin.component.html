@@ -61,9 +61,10 @@
 			<div class="card-block scroll-list" id="formContent">
 				<div>
 					<div [class]="col-sm-5">
-						<li *ngFor="let item of droppedItems" class="list-group-item">
-							<input [type]="item.type" [placeholder]="item.placeholder">
+						<li  *ngFor="let item of droppedItems" class="list-group-item">
+							<input  [type]="item.type" [placeholder]="item.placeholder">
 							<label *ngIf="item.type === 'checkbox'">{{ item.placeholder}}</label>
+							<button class="btn btn-primary" (click)="removeItem(item,droppedItems)">Click to Remove</button>
 						</li>						
 					</div>
 				</div>

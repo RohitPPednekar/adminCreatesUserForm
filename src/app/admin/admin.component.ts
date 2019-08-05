@@ -40,12 +40,12 @@ export class AdminComponent {
   }
 
 
-  // removeItem(item: any, list: Array<any>) {
-  //   let index = list.map(function (e) {
-  //     return e.name
-  //   }).indexOf(item.name);
-  //   list.splice(index, 1);
-  // }
+  removeItem(item: any, list: Array<any>) {
+    let index = list.map(function (e) {
+      return e.name
+    }).indexOf(item.name);
+    list.splice(index, 1);
+  }
 
 
   onSubmit(fieldsParams: any): void {
