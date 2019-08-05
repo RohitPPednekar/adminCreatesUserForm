@@ -1,16 +1,22 @@
 <!-- The Modal -->
+<div class="card-header">
+	<h3>Admin form creation</h3>
+</div>
 <div id="myModal" class="modal" *ngIf="display">
 
   <!-- Modal content -->
   <div class="modal-content">
     <div class="modal-header">
       <span class="close" (click)="display=false;">&times;</span>
-      <h2>Input properties updater</h2>
+      <h4>Update Form fields Properties</h4>
     </div>
     <div class="modal-body">
-      <form #f="ngForm" (ngSubmit)="onSubmit(currentDraggedItem.dragData.placeholder)">
-      Place holder: <input type="text" [(ngModel)]="currentDraggedItem.dragData.placeholder" name="placeholder" required/><br/><br/><br/>
-      <button type="submit" class="btn btn-success" [disabled]="!f.form.valid">Submit</button>
+      <form #f="ngForm" >
+	  Enter Placeholder: <input type="text" (ngModel)="currentDraggedItem.dragData.placeholder" name="placeholder" placeholder="Enter field's placeholder" required/><br/><br/><br/>
+	  Field Name   : <input type="text" (ngModel)="currentDraggedItem.dragData.fieldName" name="fieldName" placeholder="Eg. firstname,email,password,etc" required/><br/>
+	  <span style="color:red;" *ngIf="spaceValidator">No Spaces required</span><br/><br/><br/>
+	  Tick if Validation Required: <input type="checkbox" (ngModel)="currentDraggedItem.dragData.validationRequired" name="Validation" /><br/><br/><br/>
+      <button (click)="onSubmit(f.form.value)" type="submit" class="btn btn-success" [disabled]="!f.form.valid">Submit</button>
       </form>
     </div>
   </div>
@@ -54,7 +60,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-5"><button (ngSubmit)="renderUSerForm()" type="submit" class="btn btn-success" >Save</button></div>
+			<div class="col-sm-5"><button (click)="renderUSerForm()" type="submit" class="btn btn-success" >Save</button></div>
 		</div>
 	</div>
 </div>

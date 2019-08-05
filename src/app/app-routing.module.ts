@@ -17,7 +17,7 @@ const routes: Routes = [
       path: 'userform',
       component: UserFormComponent,
     },
-  { path: '**', redirectTo: 'pages' },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({
